@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secure Terminal</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .terminal {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            padding: 20px;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+        }
+        .input-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #333;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            width: 200px;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        button {
+            padding: 10px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #333;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #00ff00;
+            color: #000;
+        }
+        .message {
+            display: none;
+            text-align: left;
+            line-height: 2;
+            padding: 20px;
+            border: 1px solid #00ff00;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-size: 18px;
+        }
+        .error {
+            color: #ff0000;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <h2>SECURE TERMINAL ACCESS</h2>
+        <div class="input-container">
+            <label for="accessKey">ENTER ACCESS KEY:</label><br>
+            <input type="text" id="accessKey" maxlength="10" placeholder="XXXXXXXXXX">
+            <br>
+            <button onclick="checkKey()">VERIFY</button>
+        </div>
+        <div class="error" id="errorMessage">INVALID ACCESS KEY</div>
+        <div class="message" id="secretMessage">▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+
+It moves without sound, a shadow in motion, never bound yet never lost. A force of its own, swift and untamed, claimed not by chance but by choice.
+
+But even the restless must pause. For now, it waits—sheltered beneath, hidden in plain sight, entrusted to another's keep.
+
+Not where it was born, nor where it belongs, but where it remains until called upon again. Find where it rests, and the next piece of your mission will be revealed.
+
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀</div>
+    </div>
+
+    <script>
+        const CORRECT_KEY = "7057314341";
+        
+        function checkKey() {
+            const input = document.getElementById('accessKey').value;
+            const errorMsg = document.getElementById('errorMessage');
+            const secretMsg = document.getElementById('secretMessage');
+            
+            if (input === CORRECT_KEY) {
+                errorMsg.style.display = 'none';
+                secretMsg.style.display = 'block';
+                
+                // Typing effect for the message
+                const text = secretMsg.innerText;
+                secretMsg.innerText = '';
+                let i = 0;
+                const typeWriter = setInterval(() => {
+                    if (i < text.length) {
+                        secretMsg.innerText += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typeWriter);
+                    }
+                }, 30);
+                
+            } else {
+                errorMsg.style.display = 'block';
+                secretMsg.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
